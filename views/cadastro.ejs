@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/cadastro.css">
+
+</head>
+
+<body>
+
+
+    <div class=" conteiner">
+        <div class="form-image">
+            <img src="\css\img\22-221984_registro-png-transparent-png.png">
+        </div>
+        <div class="form">
+            <form action="/cadastrar" method="POST">
+                <div class="form-header">
+                    <div class="title">
+                        <h1>Cadastrar produto</h1>
+                    </div>
+
+                </div>
+
+                <div class="input-grup">
+                    <div class="input-box">
+                        <label>Nome do produto: * </label>
+                        <input id="nome" type="text" name="nome" placeholder="Digite o nome do produto" required>
+                    </div>
+                    <div class="input-box">
+                        <label>Lote:* </label>
+                        <input id="lote" type="text" name="lote" placeholder="Digite o numero do lote " required>
+                    </div>
+
+                    <div class="input-box">
+                        <label>Fabricação:</label>
+                        <input type="date" id="datafabricacao" name="datafabricacao" value="" min="1999-01-01"
+                            max="2022-07-31">
+                    </div>
+
+                    <div class="input-box">
+                        <label>Validade:</label>
+                        <input type="date" id="datavencimento" name="datavencimento" value="" min="1999-01-01"
+                            max="2028-07-31">
+                    </div>
+                    <div class="input-box">
+                        <label>Funcao: </label>
+                        <input id="funcao" type="text" name="funcao" placeholder="Digite a funcao" required>
+                    </div>
+                    <div class="input-box">
+                        <label>Quantidade: </label>
+                        <input id="quantidade" type="number" name="quantidade" placeholder="Digite a quantidade ">
+                    </div>
+                    <div class="input-box">
+                        <label for="funcao">Preço de custo: </label>
+                        <input id="precocusto" type="price" name="precocusto" placeholder="Digite o valor em reais">
+                    </div>
+
+                    <div class="input-box">
+                        <label for="funcao">Preço para venda: </label>
+                        <input id="precovendas" type="money" name="precovendas" placeholder="Digite o valor em reais">
+                    </div>
+
+                </div>
+                <div class="gender-inputs">
+                    <div class="gender-title">
+                        <h4>Alocado: * </h4>
+                    </div>
+                    <div class="gender-input">
+                        <input type="radio" name="alocado" id="alocado" value="Yes">
+                        <label for="famele">Sim</label>
+                    </div>
+                    <div class="gender-input">
+                        <input type="radio" name="alocado" id="alocado" value="No">
+                        <label for="alocado"> Não</label>
+                        <label ></label>
+                        <label ></label>
+                        <label >Nome: </label>
+                        <input id="nomealocado" type="Nome" name="nomealocado" placeholder="Digite o seu nome ">
+                    </div>
+
+                </div>
+                <div class="Login-button">
+                    <button type="submit">Cadastrar</button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,400;1,700;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+img{
+  height: 500px;
+  width: px;
+
+}
+body{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #21395b;
+}
+.conteiner{  
+  width: 80%;
+  height: 80vh;
+  display: flex;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0,  .212);
+}
+
+.form-image{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f8f8;
+  padding: 1rem;
+
+}
+
+.form-image img{
+  width: 50rem;
+}
+
+.form{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color:#e9ebf8;
+  padding: 3rem;
+}
+
+.form-header{
+  margin-bottom: 3rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.login-button{
+  display: flex;
+  align-items: center;
+}
+
+.login-button button{
+  border: none;
+  background-color: #44527f;
+
+}
+
+.login-button button:hover{
+  background-color: #21395b;
+}
+.login-button button a{
+  text-decoration: none;
+  font-weight: 500;
+  color: #e9ebf8;
+}
+.form-header h1::after{
+  content: '' ;
+  display: block;
+  width: 5rem;
+  height: 0.3rem;
+  background-color: #21395b;
+  margin: 0 auto;
+  position: absolute;
+  border-radius: 10px;
+}
+
+.input-grup{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.input-box{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.1rem;
+}
+
+.input-box input{
+  margin: 0.6rem 0;
+  padding: 0.8rem 1.2rem;
+  border-radius: 10px;
+  box-shadow: 1px 1px 6px #ffffff;
+}
+
+.input-box input:hover {
+  background-color: rgb(255, 244, 244) ;
+}
+
+.gender-inputs {
+
+  display: flex;
+  margin-top: 10px;
+  padding: 0 0.5rem;
+}
+
+.gender-inputs {
+    margin-left: 5px;
+    display: flex;
+    align-items: stretch;
+}
+
+.gender-inputs input {
+  margin-right: 0.35rem ;
+  margin-left: 5px;
+  border-radius: 10px;
+  margin-right: 5px;
+  
+  
+}
+
+.gender-inputs label{
+  font-size: 12px;
+  font-weight: 600;
+  color: black;
+}
+.Login-button button{
+  width: 100%;
+  margin-top: 20px;
+  border: none;
+  background-color: #21395b;
+  padding: 10px ;
+}
+
+.Login-button button a{
+  text-decoration: none;
+  font-size: 14px ;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+#precovendas{
+  margin-right: 150px;
+}

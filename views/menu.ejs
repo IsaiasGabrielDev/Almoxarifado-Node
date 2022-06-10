@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse" style="background-color:#21395b; border-radius: 0px;">
+    <a class="navbar-brand">Almoxarifado</a>
+    <ul class="nav navbar-nav navbar-right">
+      <li style="margin-right: 15px;"><a href="/index.ejs">Sair</a></li>
+    </ul>
+  </nav>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-primary">
+          <div class="panel-heading" style="background-color:#21395b; height: 50px;">
+            <h3 class="panel-title">Produtos</h3>
+            <div class="pull-right">
+              <span data-toggle="modal" data-target="#cadastrarproduto" type="button" class="btn btn-success"
+                data-container="body">
+                <i class="glyphicon glyphicon-plus" aria-hidden="true"></i> Cadastrar produto
+              </span>
+              <span class="clickable filter" title="Toggle table filter" data-container="body">
+                <i class="glyphicon glyphicon-filter"></i>
+              </span>
+            </div>
+          </div>
+          <div class="panel-body">
+            <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table"
+              placeholder="Filter Developers" />
+          </div>
+          <table class="table table-hover" id="dev-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>Lote</th>
+                <th>Função</th>
+                <th>Quantidade</th>
+                <th>Alocado</th>
+                <th>Coditem</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(var i=0; i < table.length; i++) { %>
+                <tr>
+                  <td type="text" id="number<%=[i]%>" name="number<%=[i]%>">
+                    <%=[i+1]%>
+                  </td>
+                  <td type="text" id="nome<%=[i]%>" name="nome<%=[i]%>">
+                    <%=table[i].nome%>
+                  </td>
+                  <td type="text" id="lote<%=[i]%>" name="lote<%=[i]%>">
+                    <%=table[i].lote %>
+                  </td>
+                  <td type="text" id="funcao<%=[i]%>" name="funcao<%=[i]%>">
+                    <%=table[i].funcao %>
+                  </td>
+                  <td type="text" id="quantidade<%=[i]%>" name="quantidade<%=[i]%>">
+                    <%=table[i].quantidade %>
+                  </td>
+                  <td type="text" id="alocado<%=[i]%>" name="alocado<%=[i]%>">
+                    <%=table[i].alocado%>
+                  </td>
+                  <td type="text" id="coditem<%=[i]%>" name="coditem<%=[i]%>">
+                    <%=table[i]._id%>
+                  </td>
+                  <td type="text" id="" name="Actions">
+                    <a style="cursor: pointer;" data-toggle="modal" data-target="#editarproduto"
+                      onclick="myfunc('<%=table[i]._id%>')"><i class="glyphicon glyphicon-pencil" aria-hidden="true"
+                        title="Edit"></i></a>
+                    <a style="cursor: pointer;" data-toggle="tooltip"><i class="glyphicon glyphicon-trash"
+                        aria-hidden="true" title="Edit" style="color:#E34724"
+                        onclick="Deletaritem('<%=table[i]._id%>')"></i></a>
+                  </td>
+                </tr>
+                <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <% var test=table; %>
+        <canvas id="myChart" width="400" height="400"></canvas>
+    </div>
+  </div>
+
+  <!-- line modal editar produto -->
+  <div class="modal fade" id="editarproduto" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #21395b; color: white;">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+              class="sr-only">Close</span></button>
+          <h3 class="modal-title" id="lineModalLabel">Editar produto: </h3>
+          <h5 class="modal-title" id="_ideditheader"></h5>
+        </div>
+        <div class="modal-body">
+          <!-- Editar Produto -->
+          <div class="form">
+            <form action="/atualizarproduto" method="POST">
+              <div class="input-grup">
+                <div class="input-box">
+                  <label>Nome do produto: * </label>
+                  <input id="nomeedit" type="text" name="nomeedit" placeholder="Digite o nome do produto" required>
+                </div>
+                <div class="input-box">
+                  <label>Lote:* </label>
+                  <input id="loteedit" type="text" name="loteedit" placeholder="Digite o numero do lote " required>
+                </div>
+                <div class="input-box">
+                  <label>Quantidade: </label>
+                  <input id="quantidadeedit" type="number" name="quantidadeedit" placeholder="Digite a quantidade ">
+                </div>
+                <div class="input-box">
+                  <label for="funcao">Preço de custo: </label>
+                  <input id="precocustoedit" type="price" name="precocustoedit" placeholder="Digite o valor em reais">
+                </div>
+                <div class="input-box">
+                  <label for="funcao">Preço de venda: </label>
+                  <input id="precovendasedit" type="money" name="precovendasedit" placeholder="Digite o valor em reais">
+                </div>
+                <div class="input-box">
+                  <label>Funcao: </label>
+                  <input id="funcaoedit" type="text" name="funcaoedit" placeholder="Digite a funcao" required>
+                </div>
+              </div>
+              <div class="input-grup">
+                <div class="input-box" style="margin-right: 22%">
+                  <label>Fabricação:</label>
+                  <input type="date" id="datafabricacaoedit" name="datafabricacaoedit" value="" min="1999-01-01"
+                    max="2022-07-31">
+                </div>
+
+                <div class="input-box">
+                  <label>Validade:</label>
+                  <input type="date" id="datavencimentoedit" name="datavencimentoedit" value="" min="1999-01-01"
+                    max="2028-07-31">
+                </div>
+                <input id="_idedit" name="_idedit" type="hidden">
+              </div>
+              <div class="input-grup">
+                <div class="input-box">
+                  <div class="gender-inputs">
+                    <div class="gender-input">
+                      <label>Alocado:</label>
+                      <div class="radioline">
+                        <input type="radio" name="alocadoedit" id="alocadoedit1" value="Yes">
+                        <label style="font-weight:unset">Sim</label>
+                        <input type="radio" name="alocadoedit" id="alocadoedit2" value="No" style="margin-left: 10px">
+                        <label style="font-weight:unset">Não</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-box">
+                  <label>Nome: </label>
+                  <input id="nomealocadoedit" type="text" name="nomealocadoedit" placeholder="Digite o nome do alocado">
+                </div>
+              </div>
+              <div class="Login-button">
+                <button type="submit" class="btn btn-primary">Atualizar</button>
+              </div>
+            </form>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-default" data-dismiss="modal" role="button">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- line modal cadastrar produto -->
+  <div class="modal fade" id="cadastrarproduto" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #21395b; color: white;">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+              class="sr-only">Close</span></button>
+          <h3 class="modal-title" id="lineModalLabel">Cadastrar produto</h3>
+        </div>
+        <div class="modal-body">
+          <!-- cadastrar Produto -->
+          <div class="form">
+            <form action="/cadastrar" method="POST">
+              <div class="input-grup">
+                <div class="input-box">
+                  <label>Nome do produto: * </label>
+                  <input id="nome" type="text" name="nome" placeholder="Digite o nome do produto" required>
+                </div>
+                <div class="input-box">
+                  <label>Lote:* </label>
+                  <input id="lote" type="text" name="lote" placeholder="Digite o numero do lote " required>
+                </div>
+                <div class="input-box">
+                  <label>Quantidade: </label>
+                  <input id="quantidade" type="number" name="quantidade" placeholder="Digite a quantidade ">
+                </div>
+                <div class="input-box">
+                  <label for="funcao">Preço de custo: </label>
+                  <input id="precocusto" type="price" name="precocusto" placeholder="Digite o valor em reais">
+                </div>
+                <div class="input-box">
+                  <label for="funcao">Preço de venda: </label>
+                  <input id="precovendas" type="money" name="precovendas" placeholder="Digite o valor em reais">
+                </div>
+                <div class="input-box">
+                  <label>Funcao: </label>
+                  <input id="funcao" type="text" name="funcao" placeholder="Digite a funcao" required>
+                </div>
+              </div>
+              <div class="input-grup">
+                <div class="input-box" style="margin-right: 22%">
+                  <label>Fabricação:</label>
+                  <input type="date" id="datafabricacao" name="datafabricacao" value="" min="1999-01-01"
+                    max="2022-07-31">
+                </div>
+
+                <div class="input-box">
+                  <label>Validade:</label>
+                  <input type="date" id="datavencimento" name="datavencimento" value="" min="1999-01-01"
+                    max="2028-07-31">
+                </div>
+              </div>
+              <div class="input-grup">
+                <div class="input-box">
+                  <div class="gender-inputs">
+                    <div class="gender-input">
+                      <label>Alocado:</label>
+                      <div class="radioline">
+                        <input type="radio" name="alocado" id="alocado" value="Yes">
+                        <label style="font-weight:unset">Sim</label>
+                        <input type="radio" name="alocado" id="alocado" value="No" style="margin-left: 10px">
+                        <label style="font-weight:unset">Não</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-box">
+                  <label>Nome: </label>
+                  <input id="precovendas" type="text" name="nomealocado" placeholder="Digite o nome do alocado">
+                </div>
+              </div>
+              <div class="Login-button">
+                <button type="submit" class="btn btn-primary">Atualizar</button>
+              </div>
+            </form>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-default" data-dismiss="modal" role="button">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+
+<script>
+  (function () {
+    'use strict';
+    var $ = jQuery;
+    $.fn.extend({
+      filterTable: function () {
+        return this.each(function () {
+          $(this).on('keyup', function (e) {
+            $('.filterTable_no_results').remove();
+            var $this = $(this),
+              search = $this.val().toLowerCase(),
+              target = $this.attr('data-filters'),
+              $target = $(target),
+              $rows = $target.find('tbody tr');
+
+            if (search == '') {
+              $rows.show();
+            } else {
+              $rows.each(function () {
+                var $this = $(this);
+                $this.text().toLowerCase().indexOf(search) === -1 ? $this.hide() : $this.show();
+              })
+              if ($target.find('tbody tr:visible').size() === 0) {
+                var col_count = $target.find('tr').first().find('td').size();
+                var no_results = $('<tr class="filterTable_no_results"><td colspan="' + col_count + '">No results found</td></tr>')
+                $target.find('tbody').append(no_results);
+              }
+            }
+          });
+        });
+      }
+    });
+    $('[data-action="filter"]').filterTable();
+  })(jQuery);
+
+  $(function () {
+    // attach table filter plugin to inputs
+    $('[data-action="filter"]').filterTable();
+
+    $('.container').on('click', '.panel-heading span.filter', function (e) {
+      var $this = $(this),
+        $panel = $this.parents('.panel');
+
+      $panel.find('.panel-body').slideToggle();
+      if ($this.css('display') != 'none') {
+        $panel.find('.panel-body input').focus();
+      }
+    });
+  })
+
+  function myfunc(id) {
+
+    $.ajax({
+      type: 'POST',
+      url: '/buscaritem',
+      data: jQuery.param({ id: id }),
+      contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+      success: function (data) {
+        $("#nomeedit").val(data.nome);
+        $("#loteedit").val(data.lote);
+        $("#datafabricacaoedit").val(data.datafabricacao);
+        $("#datavencimentoedit").val(data.datavencimento);
+        $("#funcaoedit").val(data.funcao);
+        $("#quantidadeedit").val(data.quantidade);
+        $("#precocustoedit").val(data.precocusto);
+        $("#precovendasedit").val(data.precovendas);
+        $("#nomealocadoedit").val(data.nomealocado);
+        $("#_idedit").val(data._id);
+        $("#_ideditheader").text(data._id);
+
+        if (data.alocado == "Yes") {
+          $("#alocadoedit1").prop("checked", true);
+        } else {
+          $("#alocadoedit2").prop("checked", true);
+        }
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+
+        alert('Error connecting to the Node.js server... ' + textStatus + " " + errorThrown);
+      }
+    });
+  }
+
+  function Deletaritem(id) {
+    $.ajax({
+      type: 'POST',
+      url: '/deletaritem',
+      data: jQuery.param({ id: id }),
+      contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+      error: function (jqXHR, textStatus, errorThrown) {
+        alert('Error connecting to the Node.js server... ' + textStatus + " " + errorThrown);
+      }
+    });
+    document.location.reload();
+  }
+
+</script>

@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,400;1,700;1,900&display=swap');
+
+*{
+  
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+}
+
+body{
+  
+  background-image: url(img/iStock-1223604108.jpg);
+  background-repeat: no-repeat;
+  background-size: 70%;
+  background-attachment: fixed;
+  background-image: "padding: 70px";
+}
+
+.conteiner{
+  display: flex;
+  margin-left: 70%;
+  margin-top: 210px;
+  background-attachment: fixed;
+}
+.card{
+  background-color: #f1efef80;
+  padding: 75px;
+  border-radius: 10%;
+  box-shadow: 3px 3px 1px 0px #000000a1;
+  background-attachment: auto;
+}
+
+h1{
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2f476d ;
+}
+
+.label-float input{
+  width: 100%;
+  padding: 10px 10px;
+  display: inline-block;
+  border: 0;
+  border-bottom: 2px solid rgb(0, 0, 0) ;
+  background-color: transparent;
+  outline: none;
+  color:#000000;
+}
+
+button{
+  margin-top: 20px;
+  width: 65px;
+  height: 35px;
+  font-size: medium;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all .3s ease-out;
+}
+.button{
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+  margin-top: 5px;
+   
+}
+
+button:hover{
+  background-color: #21395b;
+  color: azure;
+}
+
+
+

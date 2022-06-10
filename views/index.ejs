@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Almoxarifado</title>
+    <link rel="stylesheet" href="/css/meucss.css">
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+
+
+<body>
+    <nav class="navbar navbar-inverse" style="background-color:#21395b; border-radius: 0px;">
+        <a class="navbar-brand" href="">Almoxarifado</a>
+    </nav>
+    <div class="conteiner">
+        <div class="modal fade" id="cadastrologin" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+            aria-hidden="true" style="border-radius: 10%;">
+            <div class="modal-dialog" style="border-radius: 10%;">
+                <div class="modal-content" style="border-radius: 10%;">
+                    <div class="card">
+                        <h1> Cadastre-se </h1>
+
+                        <div class="label-float">
+
+                            <input type="text" id="firstname" placeholder="Nome">
+                            <label style="color: #384480;" for="usuario"></label>
+
+                        </div>
+
+                        <div class="label-float">
+
+                            <input type="text" id="secondname" placeholder="Sobrenome">
+                            <label style="color: #384480;" for="usuario"></label>
+
+                        </div>
+                        <div class="label-float">
+
+                            <input type="text" id="usuario" placeholder="Informe seu E-mail">
+                            <label style="color: #384480;" for="usuario"></label>
+
+                        </div>
+
+                        <div class="label-float">
+
+                            <input type="password" id="senha" placeholder="Digite uma senha">
+                            <label style="color: #384480;" for="usuario"></label>
+                        </div>
+
+                        <div class="label-float">
+
+                            <input type="password" id="senha" placeholder="Confirme a senha">
+                            <label style="color: #384480;" for="usuario"></label>
+                        </div>
+                        <div class="button">
+                            <button type="submit" name="bt_cadastrar" style="width: 85px;">Cadastre-se</button>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+        <div class="card">
+            <h1> Entrar </h1>
+            <form action="/show" method="POST">
+                <div class="label-float">
+                    <input type="text" name="usuario" id="usuario" placeholder="Digite seu e-mail">
+                    <label style="color: #384480;" for="usuario"></label>
+                </div>
+                <div class="label-float">
+                    <input type="password" name="senha" id="senha" placeholder="Digite sua senha">
+                    <label style="color: #384480;" for="usuario"></label>
+                </div>
+
+                <div class="button">
+                    <button type="submit" name="bt_agendar">Entrar</button>
+                    <button type="button" data-toggle="modal" data-target="#cadastrologin"
+                        style="margin-left:80px; width: 85px;" name="cadastrar">Cadastre-se</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+
+</html>
